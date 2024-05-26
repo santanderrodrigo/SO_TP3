@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SO Trabajo práctico nº3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        main {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            display: block;
+            position: relative;
+        }
+
+        .literal{
+            display: inline-block;
+        }
+
+        .option {
+            background-color: yellow;
+        }
+        .commandtp {
+            background-color: red;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .image-container {
+            width: 600; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .image-footer {
+            padding: 10px;
+        }
+
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="img/logo.png" alt="Logo de la institución" style="width: 100px; height: auto;">
+</header>
+
+<main>
+    <h1>GUÍA DE PRÁCTICA</h1>
+    <h2>Asignatura: Sistemas Operativos</h2>
+    
+    <h2>GUÍA DE PRÁCTICA</h2>
+    <h3>SISTEMAS OPERATIVOS</h3>
+    <p>Carrera: T.U. TECNOLOGÍAS DE PROGRAMACION SEDE MONTE HERMOSO</p>
+    <p>Facultad: Facultad de la Micro, Pequeña y Mediana Empresa</p>
+    <p>Docente/s: Ronny Stalin Guevara Cruz</p>
+    <p>Cuatrimestre/Año: 1C-2024</p>
+    <p>GRUPO 2: Rodrigo Santander, Paula Riquelme, Iván Ruiz, Gonzalo Lastra.</p>
+    
+    <h2>SERVIDOR NFS    </h2>
+
+    <h3>¿Qué es un servidor NFS?</h3>
+    <p>Un servidor Network File System (NFS) es un tipo de servidor que proporciona acceso a sistemas de archivos en una red de manera similar al acceso a sistemas de archivos locales. NFS es un protocolo desarrollado originalmente por Sun Microsystems en 1984 y se utiliza para compartir archivos y directorios entre sistemas UNIX/Linux, aunque también existen implementaciones para otros sistemas operativos, como por ejemplo Windows.</p>
+    <h3>¿Qué usos se puede dar al servidor?</h3>
+    <p>Un servidor NFs es muy versátil y puede ser utilizado en variedad de escenarios para mejorar eficiencia, colaboración y gestión de datos en entronos personales y empresariales.</p>
+    <ul>
+        <li>Acceso compartido, permite a vrios usuarios accceder y compartir archivos en una red local</li>
+        <li>Almacenamiento centralizado</li>
+        <li>Copias de seguridad y restauración</li>
+        <li>Servidor de aplicación, almacenamiento de configuraciones y datos para aplicaciones</li>
+        <li>Almacenamiento multimedia</li>
+    </ul>
+
+    <h3>¿Por qué es importante este servidor a nivel empresarial?</h3>
+    <p>Es importante a nivel empresarial ya que permiten mejorar la eficiencia, la gestión centralizada de datos, la colaboración y la optimización de recursos.</p>
+
+    <h3>Comandos nuevos utilizados en la práctica, parámetros que se puede utilizar en cada comando.</h3>
+    <p><code class="literal commandtp">nano</code>: permite edición de archivos desde consola</p>
+    <p><code class="literal commandtp">exportfs</code>: permite al usuario root exportar o desexportar directorios selectivamente sin reiniciar el servicio NFS. <br>
+    Parámetros aceptados por el comando:
+        <dl class="variablelist"><dt><span class="term"><code class="literal option">-r</code></span></dt><dd>
+            Hace que se exporten todos los directorios listados en <code class="literal filename">/etc/exports</code> construyendo una nueva lista de exportación en <code class="literal filename">/etc/lib/nfs/xtab</code>. Esta opción actualiza efectivamente la lista de exportación con cualquier cambio realizado en <code class="literal filename">/etc/exports</code>.
+        </dd><dt><span class="term"><code class="literal option">-a</code></span></dt><dd>
+            Hace que se exporten o no todos los directorios, dependiendo de qué otras opciones se pasen a <code class="literal">exportfs</code>. Si no se especifican otras opciones, <code class="literal">exportfs</code> exporta todos los sistemas de archivos especificados en <code class="literal filename">/etc/exports</code>.
+        </dd><dt><span class="term"><code class="literal option">-o <span class="emphasis"><em><span class="replaceable replaceable">file-systems</span></em></span></code></span></dt><dd>
+            Especifica los directorios a exportar que no aparecen en <code class="literal filename">/etc/exports</code>. Sustituya <span class="emphasis"><em><span class="replaceable replaceable">file-systems</span></em></span> con los sistemas de archivos adicionales que se van a exportar. Estos sistemas de archivos deben tener el mismo formato que el especificado en <code class="literal filename">/etc/exports</code>. Esta opción suele utilizarse para probar un sistema de archivos exportado antes de añadirlo permanentemente a la lista de sistemas de archivos exportados.
+        </dd><dt><span class="term"><code class="literal option">-i</code></span></dt><dd>
+            Ignora <code class="literal filename">/etc/exports</code>; sólo se utilizan las opciones dadas desde la línea de comandos para definir los sistemas de archivos exportados.
+        </dd><dt><span class="term"><code class="literal option">-u</code></span></dt><dd>
+            Desexporta todos los directorios compartidos. El comando <code class="literal command">exportfs -ua</code> suspende la compartición de archivos NFS mientras mantiene todos los servicios NFS activos. Para volver a habilitar el uso compartido de NFS, utilice <code class="literal command">exportfs -r</code>.
+        </dd><dt><span class="term"><code class="literal option">-v</code></span></dt><dd>
+            Operación verbosas, donde los sistemas de archivos que se exportan o no se exportan se muestran con mayor detalle cuando se ejecuta el comando <code class="literal">exportfs</code>.
+        </dd></dl>
+    </p>
+
+    <h3>Comandos a ingresar para realizar la tarea</h3>
+    <code>
+        ... escribir los comandos
+    </code>
+
+    <h3>Capturas de pantalla</h3>
+
+    <div class="image-gallery">
+        <div class="image-container">
+            <img src="img/gl/1.jpg" alt="Captura 1">
+            <div class="image-footer">Ingresamos los comandos</div>
+        </div>
+        <div class="image-container">
+            <img src="img/noimage.jpg" alt="Captura 3">
+            <div class="image-footer">Contenido del archivo editado con NANO</div>
+        </div>
+        <div class="image-container">
+            <img src="img/gl/2.jpg" alt="Captura 2">
+            <div class="image-footer">Ingresamos los comandos</div>
+        </div>
+        <div class="image-container">
+            <img src="img/noimage.jpg" alt="Captura 2">
+            <div class="image-footer">Prueba de que el servidor es accesible desde Windows 11</div>
+        </div>
+    </div>
+    
+</main>
+
+<footer>
+    <p>Desarrollado por: Grupo 2 (Cósmico)</p>
+</footer>
+
+</body>
+</html>
