@@ -141,10 +141,218 @@
             Operación verbosas, donde los sistemas de archivos que se exportan o no se exportan se muestran con mayor detalle cuando se ejecuta el comando <code class="literal">exportfs</code>.
         </dd></dl>
     </p>
+    <p><code class="literal commandtp">chmod</code>: cambia los permisos de acceso a archivos y directorios en sistemas basados en Unix.<br>
+        Parámetros aceptados por el comando:
+            <dl class="variablelist"><dt><span class="term"><code class="literal option">-c</code></span></dt><dd>
+                Mostrará un mensaje sólo si se ha realizado un cambio en los permisos de un archivo.
+            </dd><dt><span class="term"><code class="literal option">-f</code></span></dt><dd>
+                Ignora cualquier error.
+            </dd><dt><span class="term"><code class="literal option">-R</code></span></dt><dd>
+                Cambia los permisos de los archivos y directorios de forma recursiva.
+            </dd></dl>
+            <p>Los permisos se pueden establecer utilizando dos métodos:</p>
+            <p><strong>1. Notación Simbólica:</strong></p>
+            <p>Se utilizan combinaciones de letras y símbolos para definir los permisos. Los componentes son:</p>
+            <ul>
+                <li><code class="literal">u</code>: usuario (owner)</li>
+                <li><code class="literal">g</code>: grupo</li>
+                <li><code class="literal">o</code>: otros</li>
+                <li><code class="literal">a</code>: todos (usuario, grupo, y otros)</li>
+            </ul>
+            <p>Las operaciones que se pueden realizar son:</p>
+            <ul>
+                <li><code class="literal">+</code>: añade permiso</li>
+                <li><code class="literal">-</code>: quita permiso</li>
+                <li><code class="literal">=</code>: establece permiso exactamente</li>
+            </ul>
+            <p>Los permisos específicos son:</p>
+            <ul>
+                <li><code class="literal">r</code>: lectura</li>
+                <li><code class="literal">w</code>: escritura</li>
+                <li><code class="literal">x</code>: ejecución</li>
+            </ul>
+            <p>Ejemplo de uso:</p>
+            <p><code class="literal command">chmod u+rwx,g+rx,o+r archivo.txt</code> - Asigna permisos de lectura, escritura y ejecución al propietario, permisos de lectura y ejecución al grupo, y permisos de lectura a otros.</p>
+            <p><strong>2. Notación Octal:</strong></p>
+            <p>Se utilizan números para representar los permisos. Los valores son:</p>
+            <ul>
+                <li><code class="literal">4</code>: lectura (r)</li>
+                <li><code class="literal">2</code>: escritura (w)</li>
+                <li><code class="literal">1</code>: ejecución (x)</li>
+            </ul>
+            <p>Se combinan para formar un número de tres dígitos, donde cada dígito representa un conjunto de permisos:</p>
+            <ul>
+                <li>Primer dígito: permisos del usuario (owner)</li>
+                <li>Segundo dígito: permisos del grupo</li>
+                <li>Tercer dígito: permisos de otros</li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notación Octal</th>
+                        <th>Permisos</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>000</td>
+                        <td>---</td>
+                        <td>Sin permisos</td>
+                    </tr>
+                    <tr>
+                        <td>001</td>
+                        <td>--x</td>
+                        <td>Solo ejecución para otros</td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>-w-</td>
+                        <td>Solo escritura para otros</td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>-wx</td>
+                        <td>Escritura y ejecución para otros</td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>r--</td>
+                        <td>Solo lectura para otros</td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>r-x</td>
+                        <td>Lectura y ejecución para otros</td>
+                    </tr>
+                    <tr>
+                        <td>006</td>
+                        <td>rw-</td>
+                        <td>Lectura y escritura para otros</td>
+                    </tr>
+                    <tr>
+                        <td>007</td>
+                        <td>rwx</td>
+                        <td>Todos los permisos para otros</td>
+                    </tr>
+                    <tr>
+                        <td>010</td>
+                        <td>--x</td>
+                        <td>Solo ejecución para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>020</td>
+                        <td>-w-</td>
+                        <td>Solo escritura para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>030</td>
+                        <td>-wx</td>
+                        <td>Escritura y ejecución para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>040</td>
+                        <td>r--</td>
+                        <td>Solo lectura para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>050</td>
+                        <td>r-x</td>
+                        <td>Lectura y ejecución para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>060</td>
+                        <td>rw-</td>
+                        <td>Lectura y escritura para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>070</td>
+                        <td>rwx</td>
+                        <td>Todos los permisos para grupo</td>
+                    </tr>
+                    <tr>
+                        <td>100</td>
+                        <td>--x</td>
+                        <td>Solo ejecución para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>200</td>
+                        <td>-w-</td>
+                        <td>Solo escritura para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>300</td>
+                        <td>-wx</td>
+                        <td>Escritura y ejecución para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>400</td>
+                        <td>r--</td>
+                        <td>Solo lectura para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>r-x</td>
+                        <td>Lectura y ejecución para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>600</td>
+                        <td>rw-</td>
+                        <td>Lectura y escritura para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>700</td>
+                        <td>rwx</td>
+                        <td>Todos los permisos para usuario</td>
+                    </tr>
+                    <tr>
+                        <td>755</td>
+                        <td>rwxr-xr-x</td>
+                        <td>Propietario tiene todos los permisos, grupo y otros tienen lectura y ejecución</td>
+                    </tr>
+                    <tr>
+                        <td>777</td>
+                        <td>rwxrwxrwx</td>
+                        <td>Todos tienen todos los permisos</td>
+                    </tr>
+                </tbody>
+            </table>
+        </p>
+        <h3>Contenido del archivo /etc/exports /UPSO_SO *(rw,sync,no_root_squash)</h3>
+
+        <p><strong>/UPSO_SO:</strong> Es el directorio en el servidor que se está compartiendo a través del NFS. En este caso.</p>
+        
+        <p><strong>*</strong>: El asterisco * indica que el directorio /UPSO_SO puede ser accedido por cualquier cliente. En otras palabras, permite el acceso desde cualquier dirección IP.</p>
+        
+        <p><strong>(rw,sync,no_root_squash)</strong>: Estos son los parámetros de opciones que especifican cómo se deben manejar los permisos y la sincronización para el directorio compartido:</p>
+        
+        <ul>
+          <li><strong>rw (Read/Write):</strong> Permite tanto la lectura como la escritura en el directorio compartido. Los clientes que monten este directorio tendrán permisos de lectura y escritura.</li>
+          
+          <li><strong>sync (Synchronous):</strong> Garantiza que las modificaciones se escriben en el disco de manera sincrónica. Esto significa que cualquier cambio hecho en el archivo se escribe inmediatamente en el disco, lo que mejora la integridad de los datos, aunque puede afectar el rendimiento.</li>
+          
+          <li><strong>no_root_squash:</strong> Por defecto, NFS cambia el usuario root de los clientes remotos a un usuario sin privilegios (nfsnobody) por razones de seguridad (esto se llama root_squash). Sin embargo, con la opción no_root_squash, el usuario root en los clientes remotos conserva sus privilegios de root en el servidor NFS. Esto puede ser útil en entornos donde se confía en los clientes, pero representa un riesgo de seguridad si los clientes no son de confianza.</li>
+        </ul>
+        
+        
+        <p>Esta configuración permite que cualquier máquina cliente monte el directorio /UPSO_SO con permisos de lectura y escritura, asegurando que las escrituras se realicen de forma sincrónica y permitiendo que el usuario root del cliente tenga privilegios de root en el servidor.</p>
+        
 
     <h3>Comandos a ingresar para realizar la tarea</h3>
     <code>
-        ... escribir los comandos
+        sudo -i # o su para obtener privilegio de administrador 
+        yum update # actualizar los paquetes
+        yum install nfs-utils # Instalar el paquete NFS
+        mkdir /UPSO_SO # Crear el directorio que se desea compartir a traves de NFS
+        chmod -R 777 /UPSO_SO # Establecer los permisos adecuados para el directorio compartido
+        nano /etc/exports # Configuración del servidor NFS
+        #Agregar la línea /UPSO_SO *(rw,sync,no_root_squash)
+        #Posterior control + X, seguidamente S
+        systemctl start nfs-server  #Iniciar el servidor
+        systemctl enable nfs-server #Habilitar para un arranque automático 
+        firewall-cmd --permanent --add-service=nfs #añadimos la regla de firewall opara permitir NFS
+        firewall-cmd --reload #recargamos la configuración
+        exportfs -v #Exportamos los directorios sin reiniciar el NFS
     </code>
 
     <h3>Capturas de pantalla</h3>
@@ -155,16 +363,12 @@
             <div class="image-footer">Ingresamos los comandos</div>
         </div>
         <div class="image-container">
-            <img src="img/noimage.jpg" alt="Captura 3">
+            <img src="img/rs/5.PNG" alt="Captura 3">
             <div class="image-footer">Contenido del archivo editado con NANO</div>
         </div>
         <div class="image-container">
             <img src="img/gl/2.jpg" alt="Captura 2">
             <div class="image-footer">Ingresamos los comandos</div>
-        </div>
-        <div class="image-container">
-            <img src="img/noimage.jpg" alt="Captura 2">
-            <div class="image-footer">Prueba de que el servidor es accesible desde Windows 11</div>
         </div>
     </div>
     
